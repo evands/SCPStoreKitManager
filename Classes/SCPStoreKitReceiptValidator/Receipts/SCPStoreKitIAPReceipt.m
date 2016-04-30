@@ -57,8 +57,9 @@ typedef NS_ENUM(NSInteger, SCPAppReceiptASN1TypeIAP)
 	SCPStoreKitIAPReceipt *iapReceipt = [[SCPStoreKitIAPReceipt alloc] init];
 	
     self.dateFormatter = [[NSDateFormatter alloc] init];
-	[_dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-	[_dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_GB"]];
+	[_dateFormatter setDateFormat:@"yyyy'-'MM'-'dd'T'HH':'mm':'ss'Z'"];
+	[_dateFormatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"]];
+	[_dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
 	
 	while (p < end)
 	{
