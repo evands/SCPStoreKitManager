@@ -75,7 +75,8 @@
 	{
 		//If there is no receipt, we need to request one.
         //Determine if we should show an alert before requesting the receipt
-		[self showRequestNewReceiptAlert];
+        if (tryAgain)
+            [self showRequestNewReceiptAlert];
 		return;
 	}
 	
