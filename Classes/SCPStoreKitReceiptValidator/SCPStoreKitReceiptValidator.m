@@ -20,6 +20,8 @@
 @property (nonatomic, strong) NSString *bundleVersion;
 @property (nonatomic, strong) NSString *bundleIdentifier;
 
+@property (nonatomic, assign) BOOL looseVersionChecking;
+
 @property (nonatomic, assign) BOOL shouldShowReceiptAlert;
 @property (nonatomic, strong) NSString *customAlertViewTitle;
 @property (nonatomic, strong) NSString *customAlertViewMessage;
@@ -43,6 +45,11 @@
 
 - (void)validateReceiptWithBundleIdentifier:(NSString *)bundleIdentifier bundleVersion:(NSString *)bundleVersion tryAgain:(BOOL)tryAgain showReceiptAlert:(BOOL)showReceiptAlert alertViewTitle:(NSString *)alertViewTitle alertViewMessage:(NSString *)alertViewMessage success:(Success)successBlock failure:(Failure)failureBlock
 {
+    [self validateReceiptWithBundleIdentifier:bundleIdentifier bundleVersion:bundleVersion acceptOtherVersions:NO tryAgain:tryAgain showReceiptAlert:showReceiptAlert alertViewTitle:alertViewTitle alertViewMessage:alertViewMessage success:succesBlock failure:failureBlock];
+}
+
+- (void)validateReceiptWithBundleIdentifier:(NSString *)bundleIdentifier bundleVersion:(NSString *)bundleVersion acceptOtherVersions:(BOOL)looseVersionChecking tryAgain:(BOOL)tryAgain showReceiptAlert:(BOOL)showReceiptAlert alertViewTitle:(NSString *)alertViewTitle alertViewMessage:(NSString *)alertViewMessage success:(Success)successBlock failure:(Failure)failureBlock;
+{
 	self.successBlock = successBlock;
 	self.failureBlock = failureBlock;
 	
@@ -50,7 +57,8 @@
 	self.bundleIdentifier = bundleIdentifier;
     
     self.shouldShowReceiptAlert = showReceiptAlert;
-    
+    self.looseVersionChecking = looseVersionChecking;
+
     if(alertViewTitle && ![alertViewTitle isEqualToString:@""])
     {
         self.customAlertViewTitle = alertViewTitle;
@@ -173,7 +181,7 @@
 	SHA1([input bytes], [input length], [hash mutableBytes]);
     
 	//Check that the current bundleID, bundleVersion and the Hash is equal to that of the receipt
-	if([_bundleIdentifier isEqualToString:[receipt bundleIdentifier]] && [_bundleVersion isEqualToString:[receipt version]] && [hash isEqualToData:[receipt receiptHash]])
+	if([_bundleIdentifier isEqualToString:[receipt bundleIdentifier]] && (self.looseVersionChecking || [_bundleVersion isEqualToString:[receipt version]]) && [hash isEqualToData:[receipt receiptHash]])
 	{
 		if(successBlock)
 		{
