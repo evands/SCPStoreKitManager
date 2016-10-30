@@ -77,6 +77,14 @@
         //Determine if we should show an alert before requesting the receipt
         if (tryAgain)
             [self showRequestNewReceiptAlert];
+        else
+        {
+            if(_failureBlock)
+            {
+                NSError *error = [NSError errorWithDomain:SCPStoreKitDomain code:SCPErrorCodeCouldNotValidateReceipt errorDescription:@"Could not validate receipt" errorFailureReason:@"No receipt is present" errorRecoverySuggestion:@""];
+                _failureBlock(error);
+            }
+        }
 		return;
 	}
 	
