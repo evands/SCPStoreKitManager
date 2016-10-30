@@ -45,7 +45,7 @@
 
 - (void)validateReceiptWithBundleIdentifier:(NSString *)bundleIdentifier bundleVersion:(NSString *)bundleVersion tryAgain:(BOOL)tryAgain showReceiptAlert:(BOOL)showReceiptAlert alertViewTitle:(NSString *)alertViewTitle alertViewMessage:(NSString *)alertViewMessage success:(Success)successBlock failure:(Failure)failureBlock
 {
-    [self validateReceiptWithBundleIdentifier:bundleIdentifier bundleVersion:bundleVersion acceptOtherVersions:NO tryAgain:tryAgain showReceiptAlert:showReceiptAlert alertViewTitle:alertViewTitle alertViewMessage:alertViewMessage success:succesBlock failure:failureBlock];
+    [self validateReceiptWithBundleIdentifier:bundleIdentifier bundleVersion:bundleVersion acceptOtherVersions:NO tryAgain:tryAgain showReceiptAlert:showReceiptAlert alertViewTitle:alertViewTitle alertViewMessage:alertViewMessage success:successBlock failure:failureBlock];
 }
 
 - (void)validateReceiptWithBundleIdentifier:(NSString *)bundleIdentifier bundleVersion:(NSString *)bundleVersion acceptOtherVersions:(BOOL)looseVersionChecking tryAgain:(BOOL)tryAgain showReceiptAlert:(BOOL)showReceiptAlert alertViewTitle:(NSString *)alertViewTitle alertViewMessage:(NSString *)alertViewMessage success:(Success)successBlock failure:(Failure)failureBlock;
