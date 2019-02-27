@@ -9,7 +9,7 @@
 #import "SCPStoreKitReceiptValidator.h"
 #import "NSError+SCPStoreKitManager.h"
 
-#import "x509.h"
+#import "openssl/x509.h"
 
 
 @interface SCPStoreKitReceiptValidator ()
