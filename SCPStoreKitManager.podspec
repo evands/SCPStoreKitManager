@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.requires_arc = true
 
-  s.frameworks = 'StoreKit'
+  s.frameworks = 'StoreKit', 'openssl'
   s.default_subspec = 'Core'
 
   s.subspec 'Core' do |core|
