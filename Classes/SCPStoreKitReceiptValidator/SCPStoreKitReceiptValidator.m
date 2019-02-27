@@ -28,7 +28,7 @@
 
 @implementation SCPStoreKitReceiptValidator
 
-+ (id)sharedInstance
++ (nonnull instancetype)sharedInstance
 {
     static SCPStoreKitReceiptValidator *sharedInstance = nil;
 	
