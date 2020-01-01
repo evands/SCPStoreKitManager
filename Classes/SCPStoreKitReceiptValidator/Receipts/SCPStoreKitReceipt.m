@@ -8,8 +8,8 @@
 
 #import "SCPStoreKitReceipt.h"
 
-#import "pkcs7.h"
-#import "x509.h"
+#import "openssl/pkcs7.h"
+#import "openssl/x509.h"
 
 typedef NS_ENUM(NSInteger, SCPAppReceiptASN1Type)
 {

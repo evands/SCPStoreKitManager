@@ -8,7 +8,7 @@
 
 #import "SCPStoreKitIAPReceipt.h"
 
-#import "asn1.h"
+#import "openssl/asn1.h"
 
 typedef NS_ENUM(NSInteger, SCPAppReceiptASN1TypeIAP)
 {
