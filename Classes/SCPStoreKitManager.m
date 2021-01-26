@@ -76,9 +76,9 @@
 		_productsReturnedSuccessfullyBlock(response.products);
 	}
 	
-	if([[response invalidProductIdentifiers] count] > 0 && _invalidProductsBlock)
+	if([[response invalidProductIdentifiers] count] > 0 && _invalidProductIdentifiersBlock)
 	{
-		invalidProductIdentifiersBlock([response invalidProductIdentifiers]);
+		_invalidProductIdentifiersBlock([response invalidProductIdentifiers]);
 	}
 }
 
