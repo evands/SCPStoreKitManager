@@ -11,14 +11,14 @@
 
 #import "NSError+SCPStoreKitManager.h"
 
-typedef void(^ProductsReturnedSuccessfully)(NSArray *products);
-typedef void(^InvalidProducts)(NSArray *invalidProducts);
+typedef void(^ProductsReturnedSuccessfully)(NSArray<SKProduct *> *products);
+typedef void(^InvalidProducts)(NSArray<SKProduct *> *invalidProducts);
 typedef void(^Failure)(NSError *error);
 
-typedef void(^PaymentTransactionStatePurchasing)(NSArray *transactions);
-typedef void(^PaymentTransactionStateFailed)(NSArray *transactions);
-typedef void(^PaymentTransactionStatePurchased)(NSArray *transactions);
-typedef void(^PaymentTransactionStateRestored)(NSArray *transactions);
+typedef void(^PaymentTransactionStatePurchasing)(NSArray<SKPaymentTransaction *> *transactions);
+typedef void(^PaymentTransactionStateFailed)(NSArray<SKPaymentTransaction *> *transactions);
+typedef void(^PaymentTransactionStatePurchased)(NSArray<SKPaymentTransaction *> *transactions);
+typedef void(^PaymentTransactionStateRestored)(NSArray<SKPaymentTransaction *> *transactions);
 
 @interface SCPStoreKitManager : NSObject <SKProductsRequestDelegate, SKPaymentTransactionObserver>
 
@@ -26,7 +26,7 @@ typedef void(^PaymentTransactionStateRestored)(NSArray *transactions);
 
 + (id)sharedInstance;
 
-- (void)requestProductsWithIdentifiers:(NSSet *)productsSet productsReturnedSuccessfully:(ProductsReturnedSuccessfully)productsReturnedSuccessfullyBlock invalidProducts:(InvalidProducts)invalidProductsBlock failure:(Failure)failureBlock;
+- (void)requestProductsWithIdentifiers:(NSSet<NSString *> *)productsSet productsReturnedSuccessfully:(ProductsReturnedSuccessfully)productsReturnedSuccessfullyBlock invalidProducts:(InvalidProducts)invalidProductsBlock failure:(Failure)failureBlock;
 
 - (void)requestPaymentForProduct:(SKProduct *)product paymentTransactionStatePurchasing:(PaymentTransactionStatePurchasing)paymentTransactionStatePurchasingBlock paymentTransactionStatePurchased:(PaymentTransactionStatePurchased)paymentTransactionStatePurchasedBlock paymentTransactionStateFailed:(PaymentTransactionStateFailed)paymentTransactionStateFailedBlock paymentTransactionStateRestored:(PaymentTransactionStateRestored)paymentTransactionStateRestoredBlock failure:(Failure)failureBlock;
 

@@ -54,7 +54,7 @@
 	return self;
 }
 
-- (void)requestProductsWithIdentifiers:(NSSet *)productsSet productsReturnedSuccessfully:(ProductsReturnedSuccessfully)productsReturnedSuccessfullyBlock invalidProducts:(InvalidProducts)invalidProductsBlock failure:(Failure)failureBlock
+- (void)requestProductsWithIdentifiers:(NSSet<NSString *> *)productsSet productsReturnedSuccessfully:(ProductsReturnedSuccessfully)productsReturnedSuccessfullyBlock invalidProducts:(InvalidProducts)invalidProductsBlock failure:(Failure)failureBlock
 {
 	self.productsReturnedSuccessfullyBlock = productsReturnedSuccessfullyBlock;
 	self.invalidProductsBlock = invalidProductsBlock;
@@ -133,12 +133,12 @@
     [self validateQueue:queue withTransactions:queue.transactions];
 }
 
-- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray *)transactions
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions
 {
     [self validateQueue:queue withTransactions:transactions];
 }
 
-- (void) validateQueue:(SKPaymentQueue *)queue withTransactions:(NSArray *)transactions
+- (void) validateQueue:(SKPaymentQueue *)queue withTransactions:(NSArray<SKPaymentTransaction *> *)transactions
 {
     if([transactions count] > 0)
 	{
