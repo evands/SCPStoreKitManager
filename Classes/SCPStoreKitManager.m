@@ -13,7 +13,7 @@
 @property (nonatomic, strong) NSNumberFormatter *numberFormatter;
 
 @property (nonatomic, copy) ProductsReturnedSuccessfully productsReturnedSuccessfullyBlock;
-@property (nonatomic, copy) InvalidProducts invalidProductsBlock;
+@property (nonatomic, copy) InvalidProductIdentifiers invalidProductIdentifiersBlock;
 @property (nonatomic, copy) Failure failureBlock;
 
 @property (nonatomic, copy) PaymentTransactionStatePurchasing paymentTransactionStatePurchasingBlock;
@@ -54,10 +54,10 @@
 	return self;
 }
 
-- (void)requestProductsWithIdentifiers:(NSSet<NSString *> *)productsSet productsReturnedSuccessfully:(ProductsReturnedSuccessfully)productsReturnedSuccessfullyBlock invalidProducts:(InvalidProducts)invalidProductsBlock failure:(Failure)failureBlock
+- (void)requestProductsWithIdentifiers:(NSSet<NSString *> *)productsSet productsReturnedSuccessfully:(ProductsReturnedSuccessfully)productsReturnedSuccessfullyBlock invalidProducts:(InvalidProductIdentifiers)invalidProductIdentifiersBlock failure:(Failure)failureBlock;
 {
 	self.productsReturnedSuccessfullyBlock = productsReturnedSuccessfullyBlock;
-	self.invalidProductsBlock = invalidProductsBlock;
+	self.invalidProductIdentifiersBlock = invalidProductIdentifiersBlock;
 	self.failureBlock = failureBlock;
 	
 	SKProductsRequest *productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productsSet];
@@ -78,7 +78,7 @@
 	
 	if([[response invalidProductIdentifiers] count] > 0 && _invalidProductsBlock)
 	{
-		_invalidProductsBlock([response invalidProductIdentifiers]);
+		invalidProductIdentifiersBlock([response invalidProductIdentifiers]);
 	}
 }
 

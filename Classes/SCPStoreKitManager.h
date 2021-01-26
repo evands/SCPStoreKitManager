@@ -12,7 +12,7 @@
 #import "NSError+SCPStoreKitManager.h"
 
 typedef void(^ProductsReturnedSuccessfully)(NSArray<SKProduct *> *products);
-typedef void(^InvalidProducts)(NSArray<SKProduct *> *invalidProducts);
+typedef void(^InvalidProductIdentifiers)(NSArray<NSString *> *invalidProductIdentifiers);
 typedef void(^Failure)(NSError *error);
 
 typedef void(^PaymentTransactionStatePurchasing)(NSArray<SKPaymentTransaction *> *transactions);
@@ -26,7 +26,7 @@ typedef void(^PaymentTransactionStateRestored)(NSArray<SKPaymentTransaction *> *
 
 + (id)sharedInstance;
 
-- (void)requestProductsWithIdentifiers:(NSSet<NSString *> *)productsSet productsReturnedSuccessfully:(ProductsReturnedSuccessfully)productsReturnedSuccessfullyBlock invalidProducts:(InvalidProducts)invalidProductsBlock failure:(Failure)failureBlock;
+- (void)requestProductsWithIdentifiers:(NSSet<NSString *> *)productsSet productsReturnedSuccessfully:(ProductsReturnedSuccessfully)productsReturnedSuccessfullyBlock invalidProducts:(InvalidProductIdentifiers)invalidProductIdentifiersBlock failure:(Failure)failureBlock;
 
 - (void)requestPaymentForProduct:(SKProduct *)product paymentTransactionStatePurchasing:(PaymentTransactionStatePurchasing)paymentTransactionStatePurchasingBlock paymentTransactionStatePurchased:(PaymentTransactionStatePurchased)paymentTransactionStatePurchasedBlock paymentTransactionStateFailed:(PaymentTransactionStateFailed)paymentTransactionStateFailedBlock paymentTransactionStateRestored:(PaymentTransactionStateRestored)paymentTransactionStateRestoredBlock failure:(Failure)failureBlock;
 
