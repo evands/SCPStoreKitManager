@@ -98,9 +98,9 @@
         }
 		else
 		{
-            if(_failureBlock)
+            if(self->_failureBlock)
 			{
-				_failureBlock(error);
+				self->_failureBlock(error);
 			}
 			return;
         }
